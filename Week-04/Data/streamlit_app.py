@@ -36,3 +36,9 @@ st.dataframe(filtered_df)
 
 st.subheader("Summary Statistics")
 st.write(df.describe())
+
+import seaborn as sns
+box_plot1 = sns.boxplot(x=df["City"], y=df["Salary"])
+st.pyplot(box_plot1.get_figure())
+
+import matplotlib
