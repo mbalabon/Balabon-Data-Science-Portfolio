@@ -1,1 +1,1 @@
-Folder ofr streamlit application for Data Science assignment.
+Folder for streamlit application for Data Science assignment.
