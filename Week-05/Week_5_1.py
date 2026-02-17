@@ -23,7 +23,7 @@ This lecture covers:
 # Load the Dataset
 # ------------------------------------------------------------------------------
 # Read the Titanic dataset from a CSV file into a pandas DataFrame.
-df = pd.read_csv("titanic.csv")
+df = pd.read_csv("Week-05/titanic-1.csv")
 
 # ------------------------------------------------------------------------------
 # Display Summary Statistics
