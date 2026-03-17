@@ -11,7 +11,7 @@ st.write("This app analyzes a Spotify tracks dataset from Kaggle.")
 st.subheader("★ Exploring the Spotify Dataset")
 
 # Load Spotify CSV file
-df = pd.read_csv("basic_streamlit_app/data/spotify_dataset.csv")
+df = pd.read_csv("data/spotify_dataset.csv")
 
 st.write("Here's the data:")
 st.dataframe(df)
