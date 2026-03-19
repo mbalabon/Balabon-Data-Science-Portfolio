@@ -10,7 +10,7 @@ After tidying the data, I performed an exploratory data analysis (EDA) to examin
 
 This project shows how tidying data improves the clarity, structure, and usability of a dataset for analysis in pandas.
 
-݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
 
 ## Tidy Data Principles Used in This Project
 
@@ -29,7 +29,8 @@ In the original dataset, the year and GDP were combined inside the column names,
 - sorting the data for easier reading and analysis
 
 These steps made the data easier to summarize, group, and visualize.
-݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+
+݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
 
 ## Dataset Description
 
@@ -52,7 +53,7 @@ Federal R&D Budgets dataset
 
 After cleaning, each row represents one department-year observation.
 
-݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
 
 ## Project Steps
 
@@ -69,7 +70,7 @@ The notebook follows these main steps:
 10. Perform exploratory data analysis and create visualizations
 11. Build a pivot table summary
 
-݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
 
 ## Exploratory Data Analysis
 
@@ -80,7 +81,7 @@ The notebook follows these main steps:
 
 These visualizations were much easier to create after tidying the data, because the key variables were separated into their own columns.
 
-݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
 
 ## Main Findings
 
@@ -93,7 +94,7 @@ Some of the main findings from the project include:
 
 These findings show how the cleaned dataset tells a clearer story than the original version.
 
-݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
 
 ## How to Run This Project
 
@@ -116,7 +117,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-### References
+₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+
+## References
 
 Pandas Cheat Sheet: (insert link to Pandas Cheat Sheet)
 
