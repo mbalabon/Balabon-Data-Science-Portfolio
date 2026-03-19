@@ -72,8 +72,7 @@ The notebook follows these main steps:
 4. Melt the dataset from wide to long format
 
 ```
-df_melted = pd.melt(
-    df,
+df_melted = pd.melt(df,
     id_vars=['department'],
     value_vars = [
     '1976_gdp1790000000000.0',
