@@ -148,8 +148,8 @@ The app updates in real time and displays filtered datasets, summary statistics,
 #### Why This Project Matters
 
 This project demonstrates:
-- ability to build interactive data tools, not just static analysis
+- ability to build interactive data tools
 - understanding of how users interact with data
 - combining data filtering, analysis, and visualization in one application
 
-It complements my portfolio by showing applied, user-facing data skills, while my tidy data project shows backend data preparation.
+It complements my portfolio by showing applied, user-facing data skills, while my tidy data project shows behind the scenes data preparation.
