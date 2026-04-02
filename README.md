@@ -112,9 +112,10 @@ Line plot of total spending over time to show trends across years
 #### Why This Project Matters
 
 This project shows my ability to:
--take messy, real-world data and clean it
--apply structured data principles (tidy data)
--connect data cleaning directly to better analysis and visualization
+
+- take messy, real-world data and clean it
+- apply structured data principles (tidy data)
+- connect data cleaning directly to better analysis and visualization
 
 It complements my portfolio by demonstrating strong data wrangling skills, which are essential before any meaningful analysis can happen.
 
