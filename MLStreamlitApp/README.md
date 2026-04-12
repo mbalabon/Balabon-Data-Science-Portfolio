@@ -155,7 +155,7 @@ y_pred = model.predict(X_test)
 
 ### Live App
 
-You can access the deployed app here:
+🔗 You can access the deployed app here:
 [Streamlit App Link](https://balabon-data-science-portfolio-zvzmhdruy93jxp92jm5edc.streamlit.app/)
 
 ### Requirements
