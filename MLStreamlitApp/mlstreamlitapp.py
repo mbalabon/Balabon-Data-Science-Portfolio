@@ -81,3 +81,22 @@ if df is None:
     st.stop()
 
 
+# data preview
+
+st.header("📊 Dataset Preview")
+
+# from the Streamlit cheat sheet
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("First Five Rows")
+    st.dataframe(df.head())
+
+with col2:
+    st.subheader("Dataset Information")
+    st.write("Shape:")
+    st.write(df.shape)
+
+    st.write("Data Types:")
+    st.write(df.dtypes)
+
