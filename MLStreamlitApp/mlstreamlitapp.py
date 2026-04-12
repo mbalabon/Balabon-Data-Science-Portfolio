@@ -144,7 +144,7 @@ elif dataset == "Upload Your Own":
 
 #choosing the model
 
-st.sidebar.header("4. Choose Model")
+st.sidebar.header("3. Choose Model")
 
 if dataset == "Diabetes":
     model_name = st.sidebar.selectbox(
