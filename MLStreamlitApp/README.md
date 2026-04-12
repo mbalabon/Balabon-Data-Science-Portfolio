@@ -17,13 +17,14 @@ The screenshots below show the app’s sidebar controls, dataset selection optio
 ### Dataset Selection and Controls
 
 #### Sidebar Settings:
-<img width="285" height="557" alt="Screenshot 2026-04-12 at 3 27 01 PM" src="https://github.com/user-attachments/assets/6af5c907-5367-412f-9ff4-506c666f0644" />
+<img width="285" height="557" alt="Screenshot 2026-04-12 at 3 27 01 PM" src="https://github.com/user-attachments/assets/6af5c907-5367-412f-9ff4-506c666f0644" /> 
 
 #### Choose your own dataset:
 <img width="290" height="264" alt="Screenshot 2026-04-12 at 3 27 15 PM" src="https://github.com/user-attachments/assets/024208e7-d828-4abf-acc5-87630023a20e" />
 
 ##### Choosing the target column for your own dataset:
-<img width="290" height="689" alt="Screenshot 2026-04-12 at 3 27 57 PM" src="https://github.com/user-attachments/assets/578080de-ffd8-46d9-a25f-c5a601c3b4a4" />
+<img width="284" height="410" alt="Screenshot 2026-04-12 at 4 24 58 PM" src="https://github.com/user-attachments/assets/0361772e-c944-4cd0-acd6-ca3313d5bbd7" />
+
 
 ### Model Results Example for the Breast Cancer Dataset
 <img width="832" height="528" alt="Screenshot 2026-04-12 at 3 33 29 PM" src="https://github.com/user-attachments/assets/74ef8349-9894-4d54-aa8e-e92b51c8f67f" />
@@ -86,8 +87,6 @@ Each model can be adjusted using parameters such as max depth, number of neighbo
 ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ 
 
 ## Model Evaluation and Visualizations
-
-The app evaluates models using the same metrics used in class.
 
 ### Classification metrics:
 - Accuracy
@@ -212,3 +211,5 @@ from sklearn.metrics import mean_squared_error, r2_score
 - [Streamlit Cheat Sheet](https://cheat-sheet.streamlit.app/)
 
 - [Streamlit Cloud Instruction](https://docs.streamlit.io/get-started/installation/community-cloud)
+  
+- [Streamlit Managing dependencies when deploying your app](https://docs.streamlit.io/deploy/concepts/dependencies)
