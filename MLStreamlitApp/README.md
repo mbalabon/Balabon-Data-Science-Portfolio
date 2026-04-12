@@ -10,6 +10,25 @@ The app follows the same workflow used in class, including defining features and
 
 ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ 
 
+## App Interface Preview
+
+### Dataset Selection and Controls
+
+#### Sidebar Settings:
+<img width="285" height="557" alt="Screenshot 2026-04-12 at 3 27 01 PM" src="https://github.com/user-attachments/assets/6af5c907-5367-412f-9ff4-506c666f0644" />
+
+#### Choose your own dataset:
+<img width="290" height="264" alt="Screenshot 2026-04-12 at 3 27 15 PM" src="https://github.com/user-attachments/assets/024208e7-d828-4abf-acc5-87630023a20e" />
+
+##### Choosing the target column for your own dataset:
+<img width="290" height="689" alt="Screenshot 2026-04-12 at 3 27 57 PM" src="https://github.com/user-attachments/assets/578080de-ffd8-46d9-a25f-c5a601c3b4a4" />
+
+### Model Results Example for the Breast Cancer Dataset
+<img width="832" height="528" alt="Screenshot 2026-04-12 at 3 33 29 PM" src="https://github.com/user-attachments/assets/74ef8349-9894-4d54-aa8e-e92b51c8f67f" />
+
+
+₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ 
+
 ## Machine Learning Concepts Used in This Project
 
 This project is based on the following core ideas from class:
@@ -97,11 +116,22 @@ The app follows these main steps:
 1. Load and preview the dataset  
 2. Inspect structure, data types, and missing values  
 3. Select the target variable  
-4. Define feature variables (X) and target (y)  
+4. Define feature variables (X) and target (y)
+#### Example from the app
+```
+features = df.columns.drop("target")
+X = df[features]
+y = df["target"]
+```
 5. Split the data into training and testing sets  
-6. Train the selected model  
-7. Generate predictions  
-8. Evaluate model performance using metrics and visualizations  
+6. Train the selected model
+#### Example from the app
+```
+if model_name == "Decision Tree":
+    model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
+```
+8. Generate predictions  
+9. Evaluate model performance using metrics and visualizations  
 
 ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ 
 
