@@ -158,6 +158,10 @@ It complements my portfolio by showing applied, user-facing data skills, while m
 
 🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLStreamlitApp)
 
+You can access the deployed app here:
+
+🔗 [Streamlit App Link](https://balabon-data-science-portfolio-zvzmhdruy93jxp92jm5edc.streamlit.app/)
+
 This project is an interactive machine learning application built using Streamlit that allows users to explore supervised learning models in a hands-on way!
 
 #### Users can:
