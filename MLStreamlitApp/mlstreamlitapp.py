@@ -22,8 +22,8 @@ st.set_page_config(page_title="Machine Learning Explorer", layout="wide")
 
 stars = "₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁₊ ⊹ . ݁ ⟡ ݁ "
 
-st.title("☆ Machine Learning Models ☆")
-st.markdown(stars)
+st.title("☆ Machine Learning Models ☆") #title
+st.markdown(stars) # my stars!
 
 st.write(
     "This app is designed to explore supervised machine learning models by choosing a sample dataset or uploading your own CSV file, "
@@ -33,13 +33,14 @@ st.write(
 #Choosing the dataset
 
 # from the Streamlit cheat sheet
-st.sidebar.header("1. Choose Dataset")
+st.sidebar.header("1. Choose Dataset") #sidebar header
 
 dataset = st.sidebar.selectbox(
     "Dataset",
     ["Breast Cancer", "Diabetes", "Iris", "Wine", "Upload Your Own"]
 )
 
+#loading the dataset for the user to choose from sklearn or upload their own CSV file. 
 df = None
 
 if dataset == "Breast Cancer":
@@ -79,7 +80,7 @@ elif dataset == "Upload Your Own":
 if df is None:
     st.info("Please choose a dataset or upload a CSV file.")
     st.stop()
-
+#Each dataset has a little description to help users understand what the data is. The uploaded dataset option allows users to use their own data and see how different models perform on it.
 
 # data preview
 
@@ -100,6 +101,8 @@ with col2:
     st.write("Data Types:")
     st.write(df.dtypes)
 
+#basic info about the dataset, summary statistics, and missing values
+
 st.subheader("Summary Statistics")
 st.write(df.describe())
 
@@ -113,6 +116,7 @@ if dataset == "Upload Your Own":
     target = st.sidebar.selectbox("Target Column", df.columns)
 
 #preparing the data for modeling
+# for the built-in datasets, we know the target is "target". For uploaded datasets, we let the user choose the target column from a dropdown menu.
 if dataset == "Breast Cancer":
     features = df.columns.drop("target")
     X = df[features]
@@ -153,6 +157,8 @@ else:
         ["Logistic Regression", "Decision Tree", "KNN"]
     )
 
+# Depending on the dataset, we offer different model options. For the diabetes dataset, which is a regression problem, we only offer Linear Regression. For the other datasets, which are classification problems, we offer Logistic Regression, Decision Tree, and KNN.
+
 st.header("🤖 Model Description")
 
 if model_name == "Linear Regression":
@@ -182,7 +188,10 @@ elif model_name == "KNN":
     )
 
 #model settings
+
 st.sidebar.header("4. Adjust Settings")
+
+# Depending on the model, we show different hyperparameter sliders in the sidebar. We also include a slider for test size for all models.
 
 test_size = st.sidebar.slider("Test Size", 0.1, 0.4, 0.2)
 
@@ -215,6 +224,7 @@ elif model_name == "Logistic Regression":
 elif model_name == "Decision Tree":
     model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
 
+# For KNN, we need to scale the features before fitting the model because KNN is sensitive to feature scales. We use StandardScaler to standardize the features before fitting the KNN model.
 elif model_name == "KNN":
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
@@ -251,6 +261,8 @@ if model_name == "Linear Regression":
         st.write("Lower RMSE values indicate better predictive performance.")
         st.write("R² indicates the proportion of the variance in the target variable explained by the model.")
         st.write("An R² close to 1 suggests a very good fit, while an R² near 0 indicates the model fails to capture much variance.")
+
+# The interpretation section helps users understand what the performance metrics mean and how to evaluate the model's performance.
 
     with col2:
         st.subheader("Actual vs Predicted")
@@ -317,6 +329,8 @@ else:
         graph = graphviz.Source(dot_data)
 
         st.graphviz_chart(graph)
+
+# The decision tree visualization helps users understand how the model makes predictions based on feature splits. It shows the structure of the tree, the conditions at each node, and the predicted classes at the leaves. This is helpful for interpreting the model's decision-making process and identifying important features.
 
     except:
         st.warning("Decision tree visualization not available for this model.")
