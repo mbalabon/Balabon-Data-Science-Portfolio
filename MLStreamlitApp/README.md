@@ -68,21 +68,26 @@ The app includes several built-in datasets:
 
 ## Models Used in This Project
 
-The app includes the following supervised learning models:
+The app includes these supervised learning models:
 
 - **Linear Regression**  
   Used for predicting continuous outcomes.
 
 - **Logistic Regression**  
-  Used for classification problems.
+  Used for classification problems. Users can adjust:
 
 - **Decision Tree**  
-  A model that splits data into branches based on feature values.
+  A model that splits data into branches based on feature values. Users can adjust:
+  - **max_depth**: controls how deep the tree can grow. The deeper tree, the more complex.
+  - **min_samples_split**: controls how many data points are needed to split a node. Higher values make the tree simpler.
 
 - **K-Nearest Neighbors (KNN)**  
-  Classifies data based on the closest neighboring observations.
+  Classifies data based on nearby points. Users can adjust:
+  - **k (number of neighbors)**: controls how many nearby points are used. Smaller values are more sensitive, while larger values are more stable.
 
-Each model can be adjusted using parameters such as max depth, number of neighbors, or regularization strength.
+### Additional Settings
+
+- **test_size**: controls how much of the data is used for testing versus training.
 
 ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ 
 
@@ -139,7 +144,11 @@ y = df["target"]
 #### Example from the app
 ```
 if model_name == "Decision Tree":
-    model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
+    model = DecisionTreeClassifier(
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        random_state=42
+    )
 ```
 7. Generate predictions
 #### Example from the app
