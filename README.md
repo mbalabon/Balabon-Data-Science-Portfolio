@@ -153,3 +153,48 @@ This project demonstrates:
 - combining data filtering, analysis, and visualization in one application
 
 It complements my portfolio by showing applied, user-facing data skills, while my tidy data project shows behind the scenes data preparation.
+
+### ★ Machine Learning Explorer App (Streamlit)
+
+🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+
+You can access the deployed app here:
+
+🔗 [Streamlit App Link](https://balabon-data-science-portfolio-zvzmhdruy93jxp92jm5edc.streamlit.app/)
+
+This project is an interactive machine learning application built using Streamlit that allows users to explore supervised learning models in a hands-on way!
+
+#### Users can:
+- choose from built-in datasets (Breast Cancer, Diabetes, Iris, Wine)
+- upload their own dataset
+- select a model (Linear Regression, Logistic Regression, Decision Tree, KNN)
+- adjust hyperparameters such as test size, max depth, number of neighbors, and regularization strength
+- view model performance through metrics and visualizations
+
+#### Key Features
+- Interactive sidebar controls for dataset and model selection
+- Model training and prediction
+- Multiple evaluation outputs:
+-   confusion matrix
+-   classification report
+-   ROC curve and AUC
+-   regression metrics (MSE, RMSE, R²)
+- Visualizations:
+-   confusion matrix heatmap
+-   ROC curve
+-   accuracy vs. k (KNN)
+-   actual vs predicted scatter plot
+-   decision tree visualization
+
+<img width="924" height="741" alt="Screenshot 2026-04-12 at 4 09 27 PM" src="https://github.com/user-attachments/assets/477e5f1d-7136-441f-961a-07490bf3f40e" />
+
+
+#### Why This Project Matters
+
+This project demonstrates:
+- understanding of core machine learning workflows (X and y, train/test split, model training, evaluation)
+- ability to implement and compare multiple supervised learning models
+- use of hyperparameter tuning to explore model performance
+- development of a fully interactive, user-facing data application
+
+It complements my portfolio by extending beyond data cleaning and basic interactivity into **model building and deployment**. While my tidy data project focuses on preparing data and my Spotify app focuses on exploration, this project shows how to **apply machine learning models and present results interactively to users.**
