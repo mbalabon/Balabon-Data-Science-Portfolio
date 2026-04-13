@@ -168,7 +168,7 @@ This project is an interactive machine learning application built using Streamli
 - choose from built-in datasets (Breast Cancer, Diabetes, Iris, Wine)
 - upload their own dataset
 - select a model (Linear Regression, Logistic Regression, Decision Tree, KNN)
-- adjust hyperparameters such as test size, max depth, number of neighbors, and regularization strength
+- adjust hyperparameters such as test size, max depth, min_samples_split, and number of neighbors
 - view model performance through metrics and visualizations
 
 #### Key Features
