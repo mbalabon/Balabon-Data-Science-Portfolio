@@ -202,9 +202,6 @@ if model_name == "Decision Tree":
 if model_name == "KNN":
     k = st.sidebar.slider("Number of Neighbors (k)", 1, 19, 5, 2)
 
-if model_name == "Logistic Regression":
-    c_value = st.sidebar.slider("C", 0.1, 5.0, 1.0, 0.1)
-
 #train and test split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=test_size, random_state=42
@@ -220,7 +217,7 @@ if model_name == "Linear Regression":
     model = LinearRegression()
 
 elif model_name == "Logistic Regression":
-    model = LogisticRegression(C=c_value, max_iter=1000)
+    model = LogisticRegression(max_iter=1000)
 
 elif model_name == "Decision Tree":
     model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
