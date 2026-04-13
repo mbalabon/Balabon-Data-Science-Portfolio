@@ -6,7 +6,7 @@ This project builds an interactive machine learning application using Python and
 
 Users can choose from four built-in datasets or upload their own dataset, select a model, adjust hyperparameters, and observe how these changes affect model performance.
 
-The app follows the same workflow used in class, including defining features and targets, splitting the data, training models, and evaluating results using appropriate metrics and visualizations.
+The app defines features and targets, splits the data, trains models, and evaluates results using different metrics and visualizations.
 
 ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ 
 
@@ -74,7 +74,7 @@ The app includes these supervised learning models:
   Used for predicting continuous outcomes.
 
 - **Logistic Regression**  
-  Used for classification problems. Users can adjust:
+  Used for classification problems.
 
 - **Decision Tree**  
   A model that splits data into branches based on feature values. Users can adjust:
@@ -119,7 +119,6 @@ The app includes these supervised learning models:
 
 - Decision Tree visualization
 <img width="924" height="741" alt="Screenshot 2026-04-12 at 4 09 27 PM" src="https://github.com/user-attachments/assets/a5f35539-9b64-4378-bd45-dde9a9de3fb6" />
-
 
 These visualizations help interpret model performance and understand how predictions are made.
 
@@ -178,14 +177,17 @@ This project uses Python and the following libraries:
 - scikit-learn
 - graphviz
 
-### Running the app
-1. Download or clone the repository
-2. Open the project folder in VS Code
-3. Install the libraries listed in `requirements.txt`
-4. In the terminal, run the app with the command
+### Running the app locally
+
+1. Download or clone the repository.
+2. Open the project folder in VS Code.
+3. Install the required libraries listed in `requirements.txt`.
+4. Open the terminal and navigate to the `MLStreamlitApp` folder.
+5. Run the app with:
 ```
-streamlit run app.py
+streamlit run mlstreamlitapp.py
 ```
+(or whatever you have named the file containing the app) 
 
 ### Example import statements
 ```
