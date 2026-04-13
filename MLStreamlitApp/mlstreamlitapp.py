@@ -197,6 +197,7 @@ test_size = st.sidebar.slider("Test Size", 0.1, 0.4, 0.2)
 
 if model_name == "Decision Tree":
     max_depth = st.sidebar.slider("Max Depth", 1, 10, 4)
+    min_samples_split = st.sidebar.slider("Min Samples Split", 2, 10, 2)
 
 if model_name == "KNN":
     k = st.sidebar.slider("Number of Neighbors (k)", 1, 19, 5, 2)
