@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 st.title("★ Spotify Track Analysis")
 st.write("This app analyzes a Spotify tracks dataset from Kaggle.")
+st.write("Use the filters below to explore how Spotify track features like popularity, danceability, and energy vary across different songs.")
 
 st.subheader("★ Exploring the Spotify Dataset")
 
@@ -22,6 +23,8 @@ st.write(df.dtypes)
 
 #Filter Spotify Tracks
 st.subheader("★ Filtering the Spotify Dataset")
+
+st.write("These filters let you narrow the dataset by genre, explicitness, popularity, and danceability.")
 
 #Filter Spotify Tracks by genre
 genre = st.selectbox("Select a genre", df["track_genre"].unique())
@@ -69,6 +72,8 @@ filtered_df = filtered_df[
 st.write(f"Danceability range: {danceability_range}")
 st.dataframe(filtered_df)
 
+st.write("Number of tracks after filtering:", len(filtered_df))
+
 #Columns 
 st.subheader("★ Important Variables")
 
@@ -95,6 +100,7 @@ with col5:
     st.dataframe(filtered_df[["energy"]])
 
 st.subheader("★ Summary Statistics")
+st.write("These summary statistics show the overall distribution of the filtered songs, including average values for features like popularity, danceability, and energy.")
 st.write(filtered_df.describe())
 
 #Graphs
@@ -102,6 +108,7 @@ st.subheader("★ Visuals")
 
 #Boxplot for popularity by explicitness
 st.write("Popularity by Explicitness (Boxplot)")
+st.write("This graph compares how popularity is distributed between explicit and non-explicit songs.")
 plt.figure()
 box_plot1 = sns.boxplot(data=filtered_df,
                         x="explicit",
@@ -115,6 +122,7 @@ st.pyplot(box_plot1.get_figure())
 
 # Scatterplot for danceability vs energy
 st.write("Danceability vs Energy (Scatterplot)")
+st.write("This graph shows the relationship between danceability and energy in the filtered songs.")
 plt.figure()
 scatter_plot1 = sns.scatterplot(data=filtered_df,
                                 x="danceability",
@@ -128,6 +136,7 @@ st.pyplot(scatter_plot1.get_figure())
 
 # Barplot for average popularity by explicitness
 st.write("Average Popularity by Explicitness (Barplot)")
+st.write("This graph compares the average popularity of explicit and non-explicit songs.")
 plt.figure()
 bar_plot1 = sns.barplot(data=filtered_df,
                         x="explicit",
@@ -138,3 +147,4 @@ plt.xlabel("Explicit")
 plt.ylabel("Popularity")
 
 st.pyplot(bar_plot1.get_figure())
+
