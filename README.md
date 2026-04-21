@@ -125,7 +125,7 @@ It complements my portfolio by demonstrating strong data wrangling skills, which
 
 🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/basic_streamlit_app)
 
-This project is an interactive data analysis app built using Streamlit that allows users to explore a Spotify dataset.
+This project is an interactive data analysis app built using Streamlit that allows users to explore a [Spotify dataset](https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset).
 
 #### Users can filter tracks by:
 - genre
