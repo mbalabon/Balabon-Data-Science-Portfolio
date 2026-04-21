@@ -125,7 +125,7 @@ It complements my portfolio by demonstrating strong data wrangling skills, which
 
 🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/basic_streamlit_app)
 
-This project is an interactive data analysis app built using Streamlit that allows users to explore a Spotify dataset.
+This project is an interactive data analysis app built using Streamlit that allows users to explore a [Spotify dataset](https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset).
 
 #### Users can filter tracks by:
 - genre
@@ -168,7 +168,7 @@ This project is an interactive machine learning application built using Streamli
 - choose from built-in datasets (Breast Cancer, Diabetes, Iris, Wine)
 - upload their own dataset
 - select a model (Linear Regression, Logistic Regression, Decision Tree, KNN)
-- adjust hyperparameters such as test size, max depth, number of neighbors, and regularization strength
+- adjust hyperparameters such as test size, max depth, min_samples_split, and number of neighbors
 - view model performance through metrics and visualizations
 
 #### Key Features
