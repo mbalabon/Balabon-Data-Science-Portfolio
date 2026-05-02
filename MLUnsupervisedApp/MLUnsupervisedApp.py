@@ -112,12 +112,7 @@ st.dataframe(df.isnull().sum())
 
 #setting things up and choosing features
 
-
-
-
-
-
-#Select number features
+#select number features
 
 st.header("Step 2: Select Numeric Features")
 
