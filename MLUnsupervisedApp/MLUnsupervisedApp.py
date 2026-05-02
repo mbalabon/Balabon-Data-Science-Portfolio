@@ -146,24 +146,50 @@ features_df = df[selected_features].copy()
 # Let the user choose how to handle missing values
 st.sidebar.header("3. Clean Data")
 
+# This follows the missing data options from my class notes
 missing_method = st.sidebar.radio(
     "How should missing values be handled?",
-    ["Drop rows with missing values", "Fill missing values with column mean"]
+    [
+        "Original DF",
+        "Drop Rows",
+        "Drop Columns (>50% Missing)",
+        "Impute Mean",
+        "Impute Median",
+        "Impute Zero"
+    ]
 )
 
-# Drop rows with missing values
-if missing_method == "Drop rows with missing values":
+# Apply the selected missing data handling method
+if missing_method == "Original DF":
+    pass
+
+elif missing_method == "Drop Rows":
     features_df = features_df.dropna()
 
-# fill missing values with the column mean
-else:
+elif missing_method == "Drop Columns (>50% Missing)":
+    features_df = features_df.drop(
+        columns=features_df.columns[features_df.isnull().mean() > 0.5]
+    )
+
+elif missing_method == "Impute Mean":
     features_df = features_df.fillna(features_df.mean())
+
+elif missing_method == "Impute Median":
+    features_df = features_df.fillna(features_df.median())
+
+elif missing_method == "Impute Zero":
+    features_df = features_df.fillna(0)
 
 # Stop the app if there are too few rows left
 if features_df.shape[0] < 5:
     st.error("There are not enough rows after cleaning.")
     st.stop()
 
+# Stop the app if there are too few columns left
+if features_df.shape[1] < 2:
+    st.error("There are not enough numeric columns after cleaning.")
+    st.stop()
+    
 # Show selected data
 st.subheader("Selected Data")
 st.dataframe(features_df.head())
