@@ -8,7 +8,7 @@ from sklearn.datasets import load_breast_cancer, load_iris, load_wine
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import silhouette_score, accuracy_score
 
 from scipy.cluster.hierarchy import linkage, dendrogram
 
@@ -56,7 +56,7 @@ st.header("Step 1: Load the Data")
 st.sidebar.header("1. Choose Data")
 
 # The user can either use a built-in sample dataset or upload their own CSV file
-data_choice = st.sidebar.radio(    #streamlit cheat sheet
+data_choice = st.sidebar.radio(    
     "How do you want to load data?",
     ["Use a sample dataset", "Upload a CSV"]
 )
@@ -154,7 +154,7 @@ features_df = df[selected_features].copy()
 # Let the user choose how to handle missing values
 st.sidebar.header("3. Clean Data")
 
-# This follows the missing data options from my class notes
+# missing data options 
 missing_method = st.sidebar.radio(
     "How should missing values be handled?",
     [
@@ -197,6 +197,15 @@ if features_df.shape[0] < 5:
 if features_df.shape[1] < 2:
     st.error("There are not enough numeric columns after cleaning.")
     st.stop()
+
+# Stop the app if missing values are still present
+# PCA, KMeans, and hierarchical clustering cannot run with missing values
+if features_df.isnull().sum().sum() > 0:
+    st.warning("There are still missing values. Please choose a cleaning method before running the model.")
+    st.stop()
+
+# Update selected_features in case any columns were dropped
+selected_features = features_df.columns.tolist()
 
 # Show selected data
 st.subheader("Selected Data")
@@ -271,13 +280,11 @@ if model_choice == "PCA":
     )
 
     # Run PCA
-    # In the notes, PCA is reduced to 2 components for visualization
-    # Here, the user can choose the number of components
+    # the user can choose the number of components to reduce to for visualization
     pca = PCA(n_components=n_components)
     X_pca = pca.fit_transform(X_scaled)
 
     # Display the Explained Variance Ratio
-    # This is the Streamlit version of the print statements from the notes
     explained_variance = pca.explained_variance_ratio_
     cumulative_variance = np.cumsum(explained_variance)
 
@@ -285,8 +292,8 @@ if model_choice == "PCA":
     st.write("Explained Variance Ratio:", explained_variance)
     st.write("Cumulative Explained Variance:", cumulative_variance)
 
-    # 3a. Scatter Plot of PCA Scores
-    # This follows the plt.figure and plt.scatter style from the notes
+    # Scatter Plot of PCA Scores
+    # the plt.figure and plt.scatter 
     st.subheader("PCA Scatterplot")
 
     plt.figure(figsize=(8, 6))
@@ -304,7 +311,7 @@ if model_choice == "PCA":
     st.pyplot(plt)
 
     # PCA Loadings
-    # The notes build a DataFrame from pca.components_
+    # build a DataFrame from pca.components_
     st.subheader("PCA Loadings")
 
     loadings_df = pd.DataFrame(
@@ -322,7 +329,6 @@ A negative loading means the opposite.
 """)
 
     # PCA Loadings: Horizontal Grouped Bar Chart
-    # This follows the grouped horizontal bar chart from the notes
     features = loadings_df.columns.tolist()
     y_pos = np.arange(len(features))
     bar_height = 0.3
@@ -356,8 +362,8 @@ A negative loading means the opposite.
     plt.tight_layout()
     st.pyplot(fig)
 
-    # 3c. Scree Plot: Cumulative Explained Variance
-    # This follows the notes by fitting a fuller PCA model
+    # Scree Plot: Cumulative Explained Variance
+    # fitting a fuller PCA model
     st.subheader("Scree Plot: Cumulative Explained Variance")
 
     pca_full = PCA(n_components=max_components).fit(X_scaled)
@@ -376,8 +382,7 @@ A negative loading means the opposite.
     plt.grid(True)
     st.pyplot(plt)
 
-    # 3d. Bar Plot: Variance Explained by Each Component
-    # This also comes from the PCA notes
+    # Bar Plot: Variance Explained by Each Component
     st.subheader("Variance Explained by Each Principal Component")
 
     plt.figure(figsize=(8, 6))
@@ -442,7 +447,7 @@ Higher values usually mean the clusters are more clearly separated.
     pca = PCA(n_components=2)
     X_pca = pca.fit_transform(X_scaled)
 
-    # 3a. 2D Scatter Plot of Clustering Results Using PCA
+    # 2D Scatter Plot of Clustering Results Using PCA
     st.subheader("KMeans Clusters Shown with PCA")
 
     plt.figure(figsize=(8, 6))
@@ -470,9 +475,11 @@ Higher values usually mean the clusters are more clearly separated.
     plt.grid(True)
     st.pyplot(plt)
 
-    # 3b. Comparing Clusters with True Labels
+    # Comparing Clusters with True Labels
     # This is only possible for the built-in sample datasets
     if y is not None:
+
+        y_current = y[features_df.index]
 
         st.subheader("True Labels Shown with PCA")
 
@@ -482,8 +489,8 @@ Higher values usually mean the clusters are more clearly separated.
 
         for i, target_name in enumerate(target_names):
             plt.scatter(
-                X_pca[y == i, 0],
-                X_pca[y == i, 1],
+                X_pca[y_current == i, 0],
+                X_pca[y_current == i, 1],
                 color=colors[i],
                 alpha=0.7,
                 edgecolor="k",
@@ -499,9 +506,8 @@ Higher values usually mean the clusters are more clearly separated.
         st.pyplot(plt)
 
         # Accuracy score comparing KMeans clusters to true labels
-        # This follows the KMeans notebook
-        if len(np.unique(y)) == k:
-            kmeans_accuracy = accuracy_score(y, clusters)
+        if len(np.unique(y_current)) == k:
+            kmeans_accuracy = accuracy_score(y_current, clusters)
 
             st.subheader("Accuracy Score")
             st.write("Accuracy Score:", kmeans_accuracy)
@@ -537,7 +543,7 @@ The silhouette plot shows how separated the clusters are for each k.
         labels = km.labels_
         silhouette_scores.append(silhouette_score(X_scaled, labels))
 
-    # Show the WCSS and silhouette score lists like the notebook prints them
+    # Show the WCSS and silhouette score lists 
     st.write("WCSS values:")
     st.write(wcss)
 
@@ -626,11 +632,11 @@ else:
     results = features_df.copy()
     results["Cluster"] = cluster_labels
 
-    # Show results like the notes print results.head()
+    # Show results 
     st.subheader("Cluster Results")
     st.dataframe(results.head())
 
-    # Show cluster sizes like the notes print value_counts()
+    # Show cluster sizes 
     st.subheader("Cluster Sizes")
     st.write(results["Cluster"].value_counts())
 
@@ -646,7 +652,7 @@ Higher values usually mean the clusters are more clearly separated.
 """)
 
     # Low-Dimensional Insight with PCA
-    # Note: PCA is only for display; it was not used to fit the clusters.
+    # PCA is only for display, it was not used to fit the clusters.
     pca = PCA(n_components=2)
     X_pca = pca.fit_transform(X_scaled)
 
