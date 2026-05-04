@@ -9,15 +9,25 @@ This repository contains my data science projects for the course.
 
 I am a Political Science major with a Data Science minor at the University of Notre Dame. I am interested in using data analysis and visualization to better understand real-world problems, particularly in policy, economics, and social systems.
 
-This portfolio shows my experience with data cleaning, exploratory data analysis, and building interactive data applications using Python.
+This portfolio shows my experience with machine learning models, data cleaning, exploratory data analysis, and building interactive data applications using Python.
 
-## Technical Skills
+## What i'm learning! 
 
-- Python (pandas, seaborn, matplotlib, streamlit)
+- Python
 - Data Cleaning & Tidy Data Principles
 - Exploratory Data Analysis (EDA)
 - Data Visualization
 - Interactive App Development
+- Machine Learning
+
+## Table of Contents
+
+| Project | Repository | Description |
+|---|---|---|
+| [Unsupervised Machine Learning Explorer App](#-unsupervised-machine-learning-explorer-app-streamlit) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | Unsupervised ML app using PCA, KMeans, and hierarchical clustering |
+| [Machine Learning Explorer App](#-machine-learning-explorer-app-streamlit) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLStreamlitApp) | Supervised ML app using Linear Regression, Logistic Regression, Decision Trees, and KNN |
+| [Tidy Data Project](#-tidy-data-project-federal-research--development-spending) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/TidyData-Project) | Cleaning and reshaping federal R&D spending data |
+| [Spotify Track Analysis App](#-spotify-track-analysis-app-streamlit) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/basic_streamlit_app) | Interactive Streamlit app for exploring Spotify track data |
 
 ₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ .
 
