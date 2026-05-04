@@ -35,8 +35,6 @@ The screenshots below show the app’s sidebar controls, dataset selection optio
 <img width="719" height="300" alt="KMeans plots screenshot" src="https://github.com/user-attachments/assets/9dba0516-59e7-495f-9ce9-a5ffa20eb894" />
 
 #### Hierarchical Clustering Dendrogram:
-<!-- Add screenshot here -->
-<img width="800" alt="Hierarchical dendrogram screenshot" src="PASTE_SCREENSHOT_LINK_HERE" />
 <img width="715" height="274" alt="Hierarchical dendrogram screenshot" src="https://github.com/user-attachments/assets/488aa3a0-a474-482d-a342-7fb4a5475df0" />
 
 
