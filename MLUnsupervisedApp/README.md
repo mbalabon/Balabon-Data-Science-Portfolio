@@ -80,7 +80,7 @@ Uploaded datasets need at least two numeric columns because PCA, KMeans, and hie
 
 ## Missing Data Options
 
-The app includes missing data options based on class notes:
+The app includes missing data options:
 
 - **Original DF**  
   Keeps the selected data unchanged.
@@ -172,7 +172,7 @@ The hierarchical clustering section includes:
 
 ## Evaluation and Visualizations
 
-The app provides several forms of performance feedback and visualization.
+The app provides performance feedback and visualization for each model!
 
 ### PCA visualizations:
 - PCA scatterplot
