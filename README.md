@@ -20,7 +20,7 @@ This portfolio shows my experience with machine learning models, data cleaning, 
 - Interactive App Development
 - Machine Learning
 
-## Table of Contents
+## Table of Contents: My Portfolio at a glance!
 
 | Project | Repository | Description |
 |---|---|---|
