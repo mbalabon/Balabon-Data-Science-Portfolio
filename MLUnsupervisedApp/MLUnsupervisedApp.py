@@ -8,7 +8,7 @@ from sklearn.datasets import load_breast_cancer, load_iris, load_wine
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score, accuracy_score
+from sklearn.metrics import silhouette_score
 
 from scipy.cluster.hierarchy import linkage, dendrogram
 
@@ -29,6 +29,23 @@ st.write("""
 Use the controls to change model settings and observe how the plots, scores,
 and results change.
 """)
+
+with st.expander("How to use this app"):
+    st.write("""
+    1. Choose a built-in sample dataset or upload your own CSV file.
+    2. Select the numeric features you want the models to use.
+    3. Choose how to handle missing values.
+    4. Pick PCA, KMeans clustering, or hierarchical clustering.
+    5. Adjust the model settings and watch how the plots, scores, and cluster assignments change.
+    """)
+
+with st.expander("What makes this unsupervised learning?"):
+    st.write("""
+    In supervised learning, the model learns from a known answer column, such as a category or target value.
+    In unsupervised learning, the model does not use an answer column. Instead, it looks for hidden structure in the features.
+
+    In this app, PCA looks for major directions of variation, while clustering methods look for groups of similar observations.
+    """)
 
 # This gives the user an overview of what the app does
 # The expander makes the explanation collapsible because it was a fun function from the streamlit cheat sheet and clears up space on the page
@@ -214,6 +231,61 @@ st.dataframe(features_df.head())
 st.write("Rows after cleaning:", features_df.shape[0])
 st.write("Selected features:", selected_features)
 
+st.subheader("Explore Selected Features Before Modeling")
+
+st.write("""
+Before running a model, choose two selected features to compare.
+This can help you notice possible patterns, outliers, or groups in the original data.
+""")
+
+scatter_col1, scatter_col2 = st.columns(2)
+
+with scatter_col1:
+    x_axis = st.selectbox(
+        "Choose x-axis feature",
+        selected_features
+    )
+
+with scatter_col2:
+    y_axis = st.selectbox(
+        "Choose y-axis feature",
+        selected_features,
+        index=1
+    )
+
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.scatter(features_df[x_axis], features_df[y_axis], alpha=0.7, edgecolor="k")
+ax.set_xlabel(x_axis)
+ax.set_ylabel(y_axis)
+ax.set_title(f"{x_axis} vs. {y_axis}")
+ax.grid(True, alpha=0.3)
+st.pyplot(fig)
+
+st.info("""
+This plot uses the selected features before PCA or clustering.
+If you already see groups or outliers here, those patterns may also appear in the unsupervised model results.
+""")
+
+st.subheader("Preprocessing Summary")
+
+prep_col1, prep_col2, prep_col3 = st.columns(3)
+
+with prep_col1:
+    st.metric("Rows Used", features_df.shape[0])
+
+with prep_col2:
+    st.metric("Features Used", features_df.shape[1])
+
+with prep_col3:
+    st.metric("Missing Value Method", missing_method)
+
+st.info("""
+Before running PCA or clustering, the app keeps only the selected numeric features, handles missing values using the method chosen in the sidebar, and then scales the data.
+
+Scaling is important because PCA, KMeans, and hierarchical clustering are all affected by the size of the numbers in each column.
+Without scaling, a feature with large values could overpower smaller-scale features.
+""")
+
 #scaling the data
 
 st.header("Step 3: Scale the Data")
@@ -248,6 +320,21 @@ st.write("""
 Use the model controls below to experiment. After changing a setting, the plots and scores update automatically.
 """)
 
+with st.expander("What do the model settings mean?"):
+    st.markdown("""
+    **PCA: Number of components**  
+    This controls how many new summary variables PCA keeps. More components keep more information, but fewer components make the dataset easier to visualize and simplify.
+
+    **KMeans: Number of clusters, or k**  
+    This controls how many groups the algorithm tries to create. A smaller k makes broader groups. A larger k makes more specific groups.
+
+    **Hierarchical clustering: Number of clusters**  
+    This controls where the dendrogram is “cut” to form final groups.
+
+    **Hierarchical clustering: Linkage method**  
+    This controls how the algorithm decides which observations or clusters are closest together. Changing linkage can change the shape and size of the clusters.
+    """)
+
 st.sidebar.header("4. Choose Model")
 
 # Let the user choose which unsupervised method to run
@@ -279,6 +366,12 @@ if model_choice == "PCA":
         min(2, max_components)
     )
 
+    st.info(f"""
+You selected {n_components} principal components.
+Try increasing this number and watch the cumulative explained variance change.
+The tradeoff is that more components preserve more information, but fewer components are easier to interpret.
+""")
+
     # Run PCA
     # the user can choose the number of components to reduce to for visualization
     pca = PCA(n_components=n_components)
@@ -289,11 +382,30 @@ if model_choice == "PCA":
     cumulative_variance = np.cumsum(explained_variance)
 
     st.subheader("Explained Variance")
-    st.write("Explained Variance Ratio:", explained_variance)
-    st.write("Cumulative Explained Variance:", cumulative_variance)
+
+    variance_table = pd.DataFrame({
+    "Principal Component": [f"PC{i+1}" for i in range(n_components)],
+    "Explained Variance": explained_variance,
+    "Cumulative Explained Variance": cumulative_variance
+})
+
+    st.dataframe(variance_table.round(3))
+
+    st.metric(
+    "Total Variance Explained",
+    f"{cumulative_variance[-1] * 100:.1f}%"
+)
+
+    st.info(f"""
+With {n_components} principal components, PCA explains about {cumulative_variance[-1] * 100:.1f}% of the variation in the selected data.
+
+If this percentage is high, the selected components summarize the dataset well.
+If it is low, the dataset may need more components to capture its structure.
+""")
 
     # Scatter Plot of PCA Scores
     # the plt.figure and plt.scatter 
+
     st.subheader("PCA Scatterplot")
 
     plt.figure(figsize=(8, 6))
@@ -436,11 +548,16 @@ elif model_choice == "KMeans Clustering":
     score = silhouette_score(X_scaled, clusters)
 
     st.subheader("Silhouette Score")
-    st.write(score)
+    st.metric("Current Silhouette Score", f"{score:.3f}")
 
-    st.write("""
-The silhouette score helps show how separated the clusters are.
-Higher values usually mean the clusters are more clearly separated.
+    st.info(f"""
+For k = {k}, the silhouette score is {score:.3f}.
+
+A score closer to 1 usually means points fit well within their assigned clusters.
+A score near 0 usually means clusters overlap.
+A negative score can mean some points may be assigned to the wrong cluster.
+
+Try changing k and compare this score with the elbow plot below.
 """)
 
     # Reduce the data to 2 dimensions for visualization using PCA
@@ -505,16 +622,14 @@ Higher values usually mean the clusters are more clearly separated.
         plt.grid(True)
         st.pyplot(plt)
 
-        # Accuracy score comparing KMeans clusters to true labels
-        if len(np.unique(y_current)) == k:
-            kmeans_accuracy = accuracy_score(y_current, clusters)
+        st.info("""
+These true labels are shown only for reference because the built-in sample dataset includes them.
+They were not used to train the KMeans model.
 
-            st.subheader("Accuracy Score")
-            st.write("Accuracy Score:", kmeans_accuracy)
-
-        else:
-            st.info("Accuracy is only shown when the number of clusters matches the number of true label groups.")
-
+Because this app focuses on unsupervised learning, the main evaluation tools are the silhouette score,
+the elbow plot, cluster sizes, and the PCA cluster visualization.
+""")
+        
     else:
         st.info("True-label comparison is only available for the built-in sample datasets.")
 
@@ -575,8 +690,19 @@ The silhouette plot shows how separated the clusters are for each k.
     best_k = list(ks)[np.argmax(silhouette_scores)]
     best_score = max(silhouette_scores)
 
-    st.write(f"Best k by silhouette score: {best_k}")
-    st.write("Best silhouette score:", best_score)
+    st.success(f"Best k by silhouette score: {best_k} with a score of {best_score:.3f}")
+
+    if k == best_k:
+        st.info("""
+    Your selected k matches the highest silhouette score.
+    This suggests your current number of clusters separates the data relatively well.
+    """)
+    else:
+        st.info(f"""
+    Your selected k is {k}, but the highest silhouette score occurs at k = {best_k}.
+    This does not automatically mean your choice is wrong, but it gives you something to compare.
+    Look at the elbow plot, silhouette plot, cluster sizes, and PCA scatterplot together before deciding.
+    """)
 
     # Create a table to show how k changes the results
     kmeans_summary = pd.DataFrame({
@@ -604,6 +730,17 @@ else:
         "Choose linkage method",
         ["ward", "complete", "average", "single"]
     )
+
+    st.info(f"""
+You selected **{linkage_method}** linkage.
+
+- **ward** tries to make compact clusters by minimizing within-cluster variance.
+- **complete** uses the farthest distance between clusters, which can create tighter groups.
+- **average** uses the average distance between clusters.
+- **single** uses the closest distance and can sometimes create long chain-like clusters.
+
+Try changing the linkage method and compare the dendrogram, silhouette score, and PCA scatterplot.
+""")
 
     # Compute the linkage matrix
     Z = linkage(X_scaled, method=linkage_method)
@@ -639,6 +776,26 @@ else:
     # Show cluster sizes 
     st.subheader("Cluster Sizes")
     st.write(results["Cluster"].value_counts())
+
+    cluster_counts = results["Cluster"].value_counts()
+    largest_cluster = cluster_counts.max()
+    smallest_cluster = cluster_counts.min()
+
+    if smallest_cluster < 5:
+        st.warning("""
+    One of the clusters has very few observations.
+    This may mean the model found a small outlier group, or k may be too large for this dataset.
+    """)
+    elif largest_cluster > 3 * smallest_cluster:
+        st.info("""
+    The clusters are uneven in size.
+    That is not automatically bad, but it is worth checking whether one cluster is dominating the results.
+    """)
+    else:
+        st.success("""
+    The clusters are fairly balanced in size.
+    This can make the clustering easier to interpret.
+    """)
 
     # Silhouette score
     score = silhouette_score(X_scaled, cluster_labels)
@@ -705,9 +862,20 @@ Higher values usually mean the clusters are more clearly separated.
 
     # Print best k
     best_k = list(k_range)[np.argmax(sil_scores)]
+    best_h_score = max(sil_scores)
 
-    st.write("Best k by silhouette:", best_k)
-    st.write("Best silhouette score:", max(sil_scores))
+    st.success(f"Best k by silhouette score: {best_k} with a score of {best_h_score:.3f}")
+
+    if k == best_k:
+        st.info("""
+    Your selected number of clusters matches the highest silhouette score for this linkage method.
+    This suggests the current setting separates the data relatively well.
+    """)
+    else:
+        st.info(f"""
+    Your selected number of clusters is {k}, but the highest silhouette score for this linkage method occurs at k = {best_k}.
+    Try comparing the dendrogram and PCA scatterplot to decide whether the higher-scoring option also makes visual sense.
+    """)
 
     # Create a comparison table
     hierarchical_summary = pd.DataFrame({
@@ -725,10 +893,32 @@ Higher values usually mean the clusters are more clearly separated.
 # Then they can see how the plots, scores, and cluster results change
 st.header("What to Try Next")
 
-st.write("""
-Try changing the selected features, cleaning method, number of clusters,
-linkage method, or number of PCA components.
+if model_choice == "PCA":
+    st.write("""
+    Try changing the number of principal components.
+    Then look at whether the cumulative explained variance increases a lot or only a little.
+    If adding more components barely increases explained variance, the smaller PCA version may already summarize the data well.
+    """)
 
-Then compare how the plots, scores, and cluster results change.
-This helps show how different settings affect unsupervised machine learning results.
-""")
+elif model_choice == "KMeans Clustering":
+    st.write("""
+    Try changing k.
+    Then compare the cluster sizes, PCA scatterplot, elbow plot, and silhouette score.
+    A useful k usually creates interpretable clusters, has a relatively strong silhouette score, and appears near the elbow of the WCSS plot.
+    """)
+
+else:
+    st.write("""
+    Try changing both the number of clusters and the linkage method.
+    Then compare the dendrogram, silhouette score, and PCA scatterplot.
+    If the structure changes a lot across linkage methods, the dataset may not have one obvious clustering solution.
+    """)
+
+with st.expander("Quick reminder: how to judge the results"):
+    st.markdown("""
+    **PCA:** Look for high cumulative explained variance and meaningful feature loadings.
+
+    **KMeans:** Look for a visible elbow, a relatively high silhouette score, and clusters that make sense visually.
+
+    **Hierarchical clustering:** Look for large jumps in the dendrogram, a strong silhouette score, and reasonable cluster sizes.
+    """)
