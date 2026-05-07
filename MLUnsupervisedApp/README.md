@@ -126,12 +126,14 @@ The KMeans section includes:
 - cluster sizes
 - silhouette score
 - PCA scatterplot of KMeans clusters
-- true-label comparison for built-in datasets
+- optional true-label PCA visualization for built-in datasets
 - WCSS values
 - silhouette scores for different `k` values
 - elbow plot
 - silhouette score plot
 - KMeans comparison table
+
+The true labels are shown only as a visual reference for sample datasets. They are not used to train the KMeans model, and the app evaluates clustering mainly with silhouette scores, cluster sizes, elbow plots, and PCA cluster visualizations.
 
 Changing `k` affects the cluster labels, cluster sizes, cluster centroids, PCA cluster scatterplot, silhouette score, elbow plot, and silhouette score plot.
 
@@ -253,7 +255,7 @@ cumulative_variance = np.cumsum(explained_variance)
 For KMeans clustering, users choose the number of clusters, `k`. The app displays cluster centroids, cluster labels, cluster sizes, a silhouette score, and PCA cluster visualizations.
 
 ```python
-kmeans = KMeans(n_clusters=k, random_state=42)
+kmeans = KMeans(n_clusters=k, random_state=42, n_init=20)
 clusters = kmeans.fit_predict(X_scaled)
 ```
 
@@ -261,7 +263,7 @@ The app also tests different values of `k` using WCSS and silhouette scores, the
 
 ```python
 for temp_k in ks:
-    km = KMeans(n_clusters=temp_k, random_state=42)
+    km = KMeans(n_clusters=temp_k, random_state=42, n_init=20)
     km.fit(X_scaled)
     wcss.append(km.inertia_)
 
@@ -326,17 +328,17 @@ This project uses Python and the following libraries:
 1. Download or clone the repository.
 2. Open the project folder in VS Code.
 3. Install the required libraries listed in [`requirements.txt`](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/blob/main/MLUnsupervisedApp/requirements.txt)
-4. Open the terminal and navigate to the `MLStreamlitApp` folder.
+4. Open the terminal and navigate to the `MLUnsupervisedApp` folder.
 5. Run the app with:
 
 ```bash
-streamlit run mlstreamlitapp.py
+streamlit run MLUnsupervisedApp.py
 ```
 
 If running from the main repository folder, use:
 
 ```bash
-streamlit run MLStreamlitApp/mlstreamlitapp.py
+streamlit run MLUnsupervisedApp/MLUnsupervisedApp.py
 ```
 
 ### Example import statements
@@ -351,7 +353,7 @@ from sklearn.datasets import load_breast_cancer, load_iris, load_wine
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score, accuracy_score
+from sklearn.metrics import silhouette_score
 
 from scipy.cluster.hierarchy import linkage, dendrogram
 ```
@@ -367,6 +369,8 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 - [Scikit-learn info on the 🍷 Wine dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html)
 
 - [Scikit-learn PCA documentation](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)
+  
+- [Scikit-learn KMeans documentation](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 
 - [Streamlit Cheat Sheet](https://cheat-sheet.streamlit.app/)
 
