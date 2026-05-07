@@ -9,19 +9,164 @@ This repository contains my data science projects for the course.
 
 I am a Political Science major with a Data Science minor at the University of Notre Dame. I am interested in using data analysis and visualization to better understand real-world problems, particularly in policy, economics, and social systems.
 
-This portfolio shows my experience with data cleaning, exploratory data analysis, and building interactive data applications using Python.
+This portfolio shows my experience with machine learning models, data cleaning, exploratory data analysis, and building interactive data applications using Python.
 
-## Technical Skills
+## What i'm learning! 
 
-- Python (pandas, seaborn, matplotlib, streamlit)
+- Python
 - Data Cleaning & Tidy Data Principles
 - Exploratory Data Analysis (EDA)
 - Data Visualization
 - Interactive App Development
+- Machine Learning
+
+## Table of Contents: My portfolio at a glance!
+
+| Project | Repository | Description |
+|---|---|---|
+| [Unsupervised Machine Learning Explorer App](#-unsupervised-machine-learning-explorer-app-streamlit) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | Unsupervised ML app using PCA, KMeans, and hierarchical clustering |
+| [Machine Learning Explorer App](#-machine-learning-explorer-app-streamlit) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLStreamlitApp) | Supervised ML app using Linear Regression, Logistic Regression, Decision Trees, and KNN |
+| [Tidy Data Project](#-tidy-data-project-federal-research--development-spending) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/TidyData-Project) | Cleaning and reshaping federal R&D spending data |
+| [Spotify Track Analysis App](#-spotify-track-analysis-app-streamlit) | [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/basic_streamlit_app) | Interactive Streamlit app for exploring Spotify track data |
 
 ₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ .
 
 ## Projects
+₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.
+
+### ★ Unsupervised Machine Learning Explorer App (Streamlit)
+
+🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLUnsupervisedApp)
+
+You can access the deployed app here:
+
+🔗 [Streamlit App Link](https://mlunsupervisedapppy-gtrhzdntdsnsapphmthcqpd.streamlit.app/)
+
+This project is an interactive unsupervised machine learning application built using Streamlit. The app allows users to explore patterns, groups, and structure in data without using a response variable.
+
+#### Users can:
+- choose from built-in datasets (Breast Cancer, Iris, Wine)
+- upload their own CSV dataset
+- select numeric features
+- handle missing values
+- scale the data with `StandardScaler`
+- choose an unsupervised learning method
+- adjust model settings and observe how the results change
+
+#### Key Features
+- Interactive sidebar controls for dataset selection, feature selection, cleaning method, and model choice
+- Missing data options including drop rows, drop columns, impute mean, impute median, and impute zero
+- PCA with explained variance, cumulative explained variance, scatterplots, loadings, scree plot, and variance explained bar plot
+- KMeans clustering with adjustable `k`, cluster centroids, cluster labels, cluster sizes, silhouette score, elbow plot, silhouette plot, and comparison table
+- Hierarchical clustering with adjustable linkage method and number of clusters, dendrogram, PCA cluster visualization, silhouette analysis, and comparison table
+
+#### Example Code
+
+The app scales the selected numeric features before running PCA, KMeans, or hierarchical clustering.
+
+```python
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(features_df)
+```
+
+For KMeans clustering, the app lets users choose the number of clusters and then fits the model to the scaled data.
+
+```python
+kmeans = KMeans(n_clusters=k, random_state=42)
+clusters = kmeans.fit_predict(X_scaled)
+```
+
+The app also compares different values of `k` using WCSS and silhouette scores.
+
+```python
+ks = range(2, max_k + 1)
+
+wcss = []
+silhouette_scores = []
+
+for temp_k in ks:
+    km = KMeans(n_clusters=temp_k, random_state=42)
+    km.fit(X_scaled)
+
+    wcss.append(km.inertia_)
+
+    labels = km.labels_
+    silhouette_scores.append(silhouette_score(X_scaled, labels))
+```
+
+#### Visualizations:
+- PCA scatterplot
+- PCA loadings chart
+- scree plot
+- variance explained bar plot
+- KMeans elbow plot
+- KMeans silhouette score plot
+- hierarchical clustering dendrogram
+- PCA cluster scatterplots
+- clustering comparison tables
+
+<img width="719" height="300" alt="KMeans elbow and silhouette plot screenshot" src="https://github.com/user-attachments/assets/9dba0516-59e7-495f-9ce9-a5ffa20eb894" />
+
+#### Why This Project Matters
+
+This project demonstrates:
+- understanding of unsupervised machine learning workflows
+- ability to use PCA for dimensionality reduction and visualization
+- ability to use KMeans and hierarchical clustering to find structure in data
+- use of silhouette scores, elbow plots, dendrograms, and PCA visualizations to evaluate and explain results
+- development of a fully interactive machine learning app that encourages experimentation
+
+It complements my supervised machine learning app by showing a different side of machine learning. While the supervised app focuses on prediction with a target variable, this app focuses on discovering hidden patterns in data. Together, the two projects show my ability to build interactive machine learning tools for both prediction and exploration.
+
+₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ .
+
+### ★ Machine Learning Explorer App (Streamlit)
+
+🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+
+You can access the deployed app here:
+
+🔗 [Streamlit App Link](https://balabon-data-science-portfolio-zvzmhdruy93jxp92jm5edc.streamlit.app/)
+
+This project is an interactive machine learning application built using Streamlit that allows users to explore supervised learning models in a hands-on way!
+
+#### Users can:
+- choose from built-in datasets (Breast Cancer, Diabetes, Iris, Wine)
+- upload their own dataset
+- select a model (Linear Regression, Logistic Regression, Decision Tree, KNN)
+- adjust hyperparameters such as test size, max depth, min_samples_split, and number of neighbors
+- view model performance through metrics and visualizations
+
+#### Key Features
+- Interactive sidebar controls for dataset and model selection
+- Model training and prediction
+- Multiple evaluation outputs:
+-   confusion matrix
+-   classification report
+-   ROC curve and AUC
+-   regression metrics (MSE, RMSE, R²)
+- Visualizations:
+-   confusion matrix heatmap
+-   ROC curve
+-   accuracy vs. k (KNN)
+-   actual vs predicted scatter plot
+-   decision tree visualization
+
+<img width="924" height="741" alt="Screenshot 2026-04-12 at 4 09 27 PM" src="https://github.com/user-attachments/assets/477e5f1d-7136-441f-961a-07490bf3f40e" />
+
+
+#### Why This Project Matters
+
+This project demonstrates:
+- understanding of core machine learning workflows (X and y, train/test split, model training, evaluation)
+- ability to implement and compare multiple supervised learning models
+- use of hyperparameter tuning to explore model performance
+- development of a fully interactive, user-facing data application
+
+It complements my portfolio by extending beyond data cleaning and basic interactivity into **model building and deployment**. While my tidy data project focuses on preparing data and my Spotify app focuses on exploration, this project shows how to **apply machine learning models and present results interactively to users.**
+
+₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁. ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.₊ ⊹ .
+
 ### ★ Tidy Data Project: Federal Research & Development Spending
 
 🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/TidyData-Project)
@@ -153,48 +298,3 @@ This project demonstrates:
 - combining data filtering, analysis, and visualization in one application
 
 It complements my portfolio by showing applied, user-facing data skills, while my tidy data project shows behind the scenes data preparation.
-
-### ★ Machine Learning Explorer App (Streamlit)
-
-🔗 [View Project Repository](https://github.com/mbalabon/Balabon-Data-Science-Portfolio/tree/main/MLStreamlitApp)
-
-You can access the deployed app here:
-
-🔗 [Streamlit App Link](https://balabon-data-science-portfolio-zvzmhdruy93jxp92jm5edc.streamlit.app/)
-
-This project is an interactive machine learning application built using Streamlit that allows users to explore supervised learning models in a hands-on way!
-
-#### Users can:
-- choose from built-in datasets (Breast Cancer, Diabetes, Iris, Wine)
-- upload their own dataset
-- select a model (Linear Regression, Logistic Regression, Decision Tree, KNN)
-- adjust hyperparameters such as test size, max depth, min_samples_split, and number of neighbors
-- view model performance through metrics and visualizations
-
-#### Key Features
-- Interactive sidebar controls for dataset and model selection
-- Model training and prediction
-- Multiple evaluation outputs:
--   confusion matrix
--   classification report
--   ROC curve and AUC
--   regression metrics (MSE, RMSE, R²)
-- Visualizations:
--   confusion matrix heatmap
--   ROC curve
--   accuracy vs. k (KNN)
--   actual vs predicted scatter plot
--   decision tree visualization
-
-<img width="924" height="741" alt="Screenshot 2026-04-12 at 4 09 27 PM" src="https://github.com/user-attachments/assets/477e5f1d-7136-441f-961a-07490bf3f40e" />
-
-
-#### Why This Project Matters
-
-This project demonstrates:
-- understanding of core machine learning workflows (X and y, train/test split, model training, evaluation)
-- ability to implement and compare multiple supervised learning models
-- use of hyperparameter tuning to explore model performance
-- development of a fully interactive, user-facing data application
-
-It complements my portfolio by extending beyond data cleaning and basic interactivity into **model building and deployment**. While my tidy data project focuses on preparing data and my Spotify app focuses on exploration, this project shows how to **apply machine learning models and present results interactively to users.**
