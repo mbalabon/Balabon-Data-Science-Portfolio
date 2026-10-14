@@ -11,7 +11,7 @@ I am a Political Science major with a Data Science minor at the University of No
 
 This portfolio shows my experience with machine learning models, data cleaning, exploratory data analysis, and building interactive data applications using Python.
 
-## What i'm learning! 
+## Things I've learned! 
 
 - Python
 - Data Cleaning & Tidy Data Principles
